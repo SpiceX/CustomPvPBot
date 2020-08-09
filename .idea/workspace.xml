@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="33762287-3467-4e7f-b8a5-15bd982ed2d9" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/../../composer.json</pharConfigPath>
+    <execution>
+      <phar pharPath="$PROJECT_DIR$/../../composer.phar" interpreterId="2ac5fa43-c4fb-442f-98b5-8a9866642a62" />
+    </execution>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP-PMMP">
+    <include_path>
+      <path value="$PROJECT_DIR$/../../src/pocketmine" />
+      <path value="$PROJECT_DIR$/../../vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/../../vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/../../vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/../../vendor/phpstan/phpstan" />
+      <path value="$PROJECT_DIR$/../../vendor/phpstan/phpstan-phpunit" />
+      <path value="$PROJECT_DIR$/../../vendor/phpstan/phpstan-strict-rules" />
+      <path value="$PROJECT_DIR$/../../vendor/phpunit/php-token-stream" />
+      <path value="$PROJECT_DIR$/../../vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/../../vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/../../vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/../../vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/../../vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/../../vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/../../vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/../../vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/../../vendor/adhocore/json-comment" />
+      <path value="$PROJECT_DIR$/../../vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/../../vendor/ocramius/package-versions" />
+      <path value="$PROJECT_DIR$/../../vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/../../vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/../../vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/../../vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/../../vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/../../vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/../../vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/../../vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/../../vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/../../vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/../../vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/../../vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/../../vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/../../vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/../../vendor/pocketmine/math" />
+      <path value="$PROJECT_DIR$/../../vendor/pocketmine/nbt" />
+      <path value="$PROJECT_DIR$/../../vendor/pocketmine/log" />
+      <path value="$PROJECT_DIR$/../../vendor/pocketmine/raklib" />
+      <path value="$PROJECT_DIR$/../../vendor/pocketmine/snooze" />
+      <path value="$PROJECT_DIR$/../../vendor/pocketmine/spl" />
+      <path value="$PROJECT_DIR$/../../vendor/pocketmine/classloader" />
+      <path value="$PROJECT_DIR$/../../vendor/pocketmine/callback-validator" />
+      <path value="$PROJECT_DIR$/../../vendor/pocketmine/binaryutils" />
+      <path value="$PROJECT_DIR$/../../vendor/pocketmine/log-pthreads" />
+      <path value="$PROJECT_DIR$/../../vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/../../vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/../../vendor/composer" />
+      <path value="$PROJECT_DIR$/../../vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/../../vendor/myclabs/deep-copy" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1frUktxByk6IgjZuTaL3wY0qV2q" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documentos/LinuxShared/Bots/PraticeBot-2f97c42db6d97b7585e3e2752a61e32fa7f69d4d/src/PraticeBot/PraticeBot.php" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.composer" />
+    <property name="two.files.diff.last.used.file" value="$USER_HOME$/Documentos/LinuxShared/Bots/PraticeBot-2f97c42db6d97b7585e3e2752a61e32fa7f69d4d/src/PraticeBot/PraticeBot.php" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/litek/bot/entity/types" />
+      <recent name="$PROJECT_DIR$/src/litek/bot/entity" />
+      <recent name="$PROJECT_DIR$/src/litek" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="33762287-3467-4e7f-b8a5-15bd982ed2d9" name="Default Changelist" comment="" />
+      <created>1596975854300</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1596975854300</updated>
+      <workItem from="1596975883139" duration="11020000" />
+      <workItem from="1596988035089" duration="13692000" />
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="491" y="118" width="374" height="568" key="#com.intellij.ide.util.MemberChooser" timestamp="1596985357899">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state x="491" y="118" width="374" height="568" key="#com.intellij.ide.util.MemberChooser/0.30.1366.738@0.30.1366.738" timestamp="1596985357898" />
+    <state x="0" y="30" width="1356" height="738" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1596979583742">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state x="0" y="30" width="1356" height="738" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.30.1366.738@0.30.1366.738" timestamp="1596979583742" />
+    <state x="416" y="142" width="524" height="490" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1596989662256">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="416" y="142" width="524" height="490" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.768@0.0.1366.768" timestamp="1596989662256" />
+    <state x="416" y="166" width="524" height="490" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.30.1366.738@0.30.1366.738" timestamp="1596985199334" />
+    <state x="100" y="100" width="1166" height="568" key="DiffContextDialog" timestamp="1596977512059">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="100" y="100" width="1166" height="568" key="DiffContextDialog/0.0.1366.768@0.0.1366.768" timestamp="1596977512059" />
+    <state x="465" y="145" width="424" height="490" key="FileChooserDialogImpl" timestamp="1596976657408">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="465" y="145" width="424" height="490" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1596976657408" />
+    <state x="392" y="141" width="673" height="556" key="NewPhpClassDialog" timestamp="1596985261568">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state x="392" y="115" width="571" height="544" key="NewPhpClassDialog/0.0.1366.768@0.0.1366.768" timestamp="1596978089897" />
+    <state x="392" y="141" width="673" height="556" key="NewPhpClassDialog/0.30.1366.738@0.30.1366.738" timestamp="1596985261568" />
+    <state x="194" y="19" width="977" height="736" key="SettingsEditor" timestamp="1596976072531">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="194" y="19" width="977" height="736" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1596976072531" />
+    <state x="393" y="130" width="579" height="538" key="find.popup" timestamp="1596980519836">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state x="393" y="130" width="579" height="538" key="find.popup/0.30.1366.738@0.30.1366.738" timestamp="1596980519836" />
+  </component>
+</project>

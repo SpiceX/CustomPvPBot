@@ -1,0 +1,26 @@
+name: CustomPvPBot
+version: 1.0-beta_b01
+api: 3.0.0
+main: litek\bot\CustomPvPBot
+author: LiTEK
+description: bot pvp plugin private
+
+permissions:
+  bot.cmd:
+    description: command permission
+    default: true
+  bot.summon:
+    description: summon permission
+    default: op
+  bot.summon.from_template:
+    description: summon from template permission
+    default: op
+  template.create:
+    description: create template permission
+    default: op
+  template.edit:
+    description: edit template permission
+    default: op
+  template.delete:
+    description: delete template permission
+    default: op
