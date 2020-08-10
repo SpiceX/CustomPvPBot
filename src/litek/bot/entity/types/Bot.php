@@ -27,6 +27,7 @@ use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\item\Sword;
 use pocketmine\level\Level;
+use pocketmine\level\Position;
 use pocketmine\math\Vector3;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\Player;
@@ -41,6 +42,8 @@ class Bot extends Human
 	public $name;
 	/** @var string */
 	private $target;
+	/** @var bool */
+	private $hasTarget = false;
 	/** @var int */
 	private $hitTick = 0;
 	/** @var float */
@@ -51,6 +54,12 @@ class Bot extends Human
 	private $agroCooldown = 0;
 	/** @var int|mixed */
 	private $attackDamage = 2;
+	/** @var string */
+	private $command;
+	/** @var int|mixed|Position */
+	private $defaultPosition;
+	/** @var int */
+	private $respawnTime;
 
 	/**
 	 * bot constructor.
@@ -58,11 +67,12 @@ class Bot extends Human
 	 * @param CompoundTag $nbt
 	 * @param string $target
 	 */
-	public function __construct(Level $level, CompoundTag $nbt, string $target)
+	public function __construct(Level $level, CompoundTag $nbt, string $target = null)
 	{
 		parent::__construct($level, $nbt);
 		$this->target = $target;
 		$this->setNameTag($this->getNameTag());
+		$this->setCanSaveWithChunk(true);
 	}
 
 	/**
@@ -73,13 +83,20 @@ class Bot extends Human
 	{
 		parent::entityBaseTick($tickDiff);
 		if (!$this->isAlive() || $this->getTargetPlayer() === null || !$this->getTargetPlayer()->isAlive()) {
-			if (!$this->closed) $this->flagForDespawn();
+			if ($this->hasTarget) {
+				if (!$this->closed) {
+					$this->flagForDespawn();
+				}
+			}
 			return false;
 		}
 		$this->setNameTagAlwaysVisible(true);
 		$this->setNameTagVisible(true);
 		$this->setNameTag('');
 		$this->setNameTag($this->getBotTag());
+		if (!$this->hasTarget) {
+			return false;
+		}
 		$position = $this->getTargetPlayer()->asVector3();
 		$x = $position->x - $this->getX();
 		$z = $position->z - $this->getZ();
@@ -257,7 +274,7 @@ class Bot extends Human
 			if (!$agro) {
 				$max = 5;
 			} else {
-				$max = 1.5;
+				$max = 2;
 				$this->agroCooldown = Server::getInstance()->getTick();
 			}
 			--$this->pearlsRemaining;
@@ -271,6 +288,12 @@ class Bot extends Human
 	public function canThrowPearl(): bool
 	{
 		return $this->agroCooldown === null ? true : Server::getInstance()->getTick() - $this->agroCooldown >= 175;
+	}
+
+	public function playerLooksAt(Player $player)
+	{
+		$this->target = $player->getName();
+		$this->hasTarget = true;
 	}
 
 	public function setName(string $name)
@@ -305,6 +328,67 @@ class Bot extends Human
 	{
 		parent::attack($source);
 		$this->hitTick = Server::getInstance()->getTick();
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getCommand(): string
+	{
+		return $this->command;
+	}
+
+	/**
+	 * @param string $command
+	 */
+	public function setCommand(string $command): void
+	{
+		$this->command = $command;
+	}
+
+	/**
+	 * @return int|mixed|Vector3
+	 */
+	public function getDefaultPosition()
+	{
+		return $this->defaultPosition;
+	}
+
+	public function setDefaultPosition(Vector3 $position)
+	{
+		$this->defaultPosition = $position;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function hasTarget(): bool
+	{
+		return $this->hasTarget;
+	}
+
+	/**
+	 * @param bool $hasTarget
+	 */
+	public function setHasTarget(bool $hasTarget): void
+	{
+		$this->hasTarget = $hasTarget;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getRespawnTime(): int
+	{
+		return $this->respawnTime;
+	}
+
+	/**
+	 * @param int $respawnTime
+	 */
+	public function setRespawnTime(int $respawnTime): void
+	{
+		$this->respawnTime = $respawnTime;
 	}
 
 }

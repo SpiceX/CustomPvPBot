@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="33762287-3467-4e7f-b8a5-15bd982ed2d9" name="Default Changelist" comment="" />
+    <list default="true" id="33762287-3467-4e7f-b8a5-15bd982ed2d9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/litek/bot/math/Vector3X.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/litek/bot/task/BotLookingTask.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/litek/bot/task/BotRespawnTask.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/litek/bot/util/InteractionHelper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/BotListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/BotListener.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/CustomPvPBot.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/CustomPvPBot.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/entity/EntityManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/entity/EntityManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/entity/types/Bot.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/entity/types/Bot.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/form/FormManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/form/FormManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/provider/TemplateManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/provider/TemplateManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/provider/elements/Template.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/provider/elements/Template.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +44,9 @@
     <execution>
       <phar pharPath="$PROJECT_DIR$/../../composer.phar" interpreterId="2ac5fa43-c4fb-442f-98b5-8a9866642a62" />
     </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP-PMMP">
     <include_path>
@@ -66,6 +101,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1frUktxByk6IgjZuTaL3wY0qV2q" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -74,11 +112,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Documentos/LinuxShared/Bots/PraticeBot-2f97c42db6d97b7585e3e2752a61e32fa7f69d4d/src/PraticeBot/PraticeBot.php" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.composer" />
     <property name="two.files.diff.last.used.file" value="$USER_HOME$/Documentos/LinuxShared/Bots/PraticeBot-2f97c42db6d97b7585e3e2752a61e32fa7f69d4d/src/PraticeBot/PraticeBot.php" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/litek/bot/task" />
       <recent name="$PROJECT_DIR$/src/litek/bot/entity/types" />
       <recent name="$PROJECT_DIR$/src/litek/bot/entity" />
       <recent name="$PROJECT_DIR$/src/litek" />
@@ -95,24 +135,37 @@
       <option name="presentableId" value="Default" />
       <updated>1596975854300</updated>
       <workItem from="1596975883139" duration="11020000" />
-      <workItem from="1596988035089" duration="13692000" />
+      <workItem from="1596988035089" duration="18065000" />
+      <workItem from="1597020211532" duration="5919000" />
+      <workItem from="1597073622839" duration="15860000" />
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
-    <state x="491" y="118" width="374" height="568" key="#com.intellij.ide.util.MemberChooser" timestamp="1596985357899">
+    <state x="491" y="118" width="374" height="568" key="#com.intellij.ide.util.MemberChooser" timestamp="1597076757054">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="491" y="118" width="374" height="568" key="#com.intellij.ide.util.MemberChooser/0.30.1366.738@0.30.1366.738" timestamp="1596985357898" />
+    <state x="491" y="118" width="374" height="568" key="#com.intellij.ide.util.MemberChooser/0.30.1366.738@0.30.1366.738" timestamp="1597076757054" />
     <state x="0" y="30" width="1356" height="738" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1596979583742">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="0" y="30" width="1356" height="738" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.30.1366.738@0.30.1366.738" timestamp="1596979583742" />
-    <state x="416" y="142" width="524" height="490" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1596989662256">
-      <screen x="0" y="0" width="1366" height="768" />
+    <state x="416" y="166" width="524" height="490" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597084755565">
+      <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="416" y="142" width="524" height="490" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.768@0.0.1366.768" timestamp="1596989662256" />
-    <state x="416" y="166" width="524" height="490" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.30.1366.738@0.30.1366.738" timestamp="1596985199334" />
+    <state x="416" y="166" width="524" height="490" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.30.1366.738@0.30.1366.738" timestamp="1597084755565" />
     <state x="100" y="100" width="1166" height="568" key="DiffContextDialog" timestamp="1596977512059">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -121,18 +174,31 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="465" y="145" width="424" height="490" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1596976657408" />
-    <state x="392" y="141" width="673" height="556" key="NewPhpClassDialog" timestamp="1596985261568">
+    <state x="558" y="288" width="249" height="197" key="Github.ShareDialog" timestamp="1597001815047">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="558" y="288" width="249" height="197" key="Github.ShareDialog/0.0.1366.768@0.0.1366.768" timestamp="1597001815047" />
+    <state x="448" y="105" width="459" height="564" key="Github.UntrackedFilesDialog" timestamp="1597001824308">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="448" y="105" width="459" height="564" key="Github.UntrackedFilesDialog/0.0.1366.768@0.0.1366.768" timestamp="1597001824308" />
+    <state x="392" y="141" width="673" height="556" key="NewPhpClassDialog" timestamp="1597087289015">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="392" y="115" width="571" height="544" key="NewPhpClassDialog/0.0.1366.768@0.0.1366.768" timestamp="1596978089897" />
-    <state x="392" y="141" width="673" height="556" key="NewPhpClassDialog/0.30.1366.738@0.30.1366.738" timestamp="1596985261568" />
+    <state x="392" y="115" width="571" height="544" key="NewPhpClassDialog/0.0.1366.768@0.0.1366.768" timestamp="1597075268512" />
+    <state x="392" y="141" width="673" height="556" key="NewPhpClassDialog/0.30.1366.738@0.30.1366.738" timestamp="1597087289015" />
     <state x="194" y="19" width="977" height="736" key="SettingsEditor" timestamp="1596976072531">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="194" y="19" width="977" height="736" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1596976072531" />
-    <state x="393" y="130" width="579" height="538" key="find.popup" timestamp="1596980519836">
+    <state x="393" y="130" width="579" height="538" key="find.popup" timestamp="1597090171709">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
-    <state x="393" y="130" width="579" height="538" key="find.popup/0.30.1366.738@0.30.1366.738" timestamp="1596980519836" />
+    <state x="393" y="104" width="579" height="560" key="find.popup/0.0.1366.768@0.0.1366.768" timestamp="1597004945752" />
+    <state x="393" y="130" width="579" height="538" key="find.popup/0.30.1366.738@0.30.1366.738" timestamp="1597090171709" />
+    <state x="347" y="175" key="run.anything.popup" timestamp="1597083669655">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state x="347" y="175" key="run.anything.popup/0.30.1366.738@0.30.1366.738" timestamp="1597083669655" />
   </component>
 </project>

@@ -20,6 +20,8 @@ namespace litek\bot\provider\elements;
 
 
 use litek\bot\CustomPvPBot;
+use litek\bot\math\Vector3X;
+use pocketmine\math\Vector3;
 use pocketmine\entity\Skin;
 use pocketmine\utils\Config;
 
@@ -37,12 +39,24 @@ class Template
 	/** @var Skin */
 	private $skin;
 
-	public function __construct(string $name, float $health, float $damage, Skin $skin)
+	/** @var string */
+	private $command;
+
+	/** @var int */
+	private $respawnTime;
+
+	/** @var Vector3 */
+	private $defaultPosition;
+
+	public function __construct(string $name, float $health, float $damage, Skin $skin, string $command, int $respawnTime, Vector3 $defaultPosition)
 	{
 		$this->name = $name;
 		$this->health = $health;
 		$this->damage = $damage;
 		$this->skin = $skin;
+		$this->command = $command;
+		$this->respawnTime = $respawnTime;
+		$this->defaultPosition = $defaultPosition;
 	}
 
 	public function save(){
@@ -51,6 +65,9 @@ class Template
 		$config->set('health', $this->health);
 		$config->set('damage', $this->damage);
 		$config->set('skin', $this->skin->getSkinId());
+		$config->set('command', $this->command);
+		$config->set('respawn_time', $this->respawnTime);
+		$config->set('default_position', Vector3X::toString($this->defaultPosition));
 		$config->save();
 	}
 
@@ -118,8 +135,59 @@ class Template
 		$this->skin = $skin;
 	}
 
+	/**
+	 * @return CustomPvPBot
+	 */
 	public function getPlugin(): CustomPvPBot
 	{
 		return CustomPvPBot::getInstance();
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getCommand(): string
+	{
+		return $this->command;
+	}
+
+	/**
+	 * @param string $command
+	 */
+	public function setCommand(string $command): void
+	{
+		$this->command = $command;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getRespawnTime(): int
+	{
+		return $this->respawnTime;
+	}
+
+	/**
+	 * @param int $respawnTime
+	 */
+	public function setRespawnTime(int $respawnTime): void
+	{
+		$this->respawnTime = $respawnTime;
+	}
+
+	/**
+	 * @return Vector3
+	 */
+	public function getDefaultPosition(): Vector3
+	{
+		return $this->defaultPosition;
+	}
+
+	/**
+	 * @param Vector3 $defaultPosition
+	 */
+	public function setDefaultPosition(Vector3 $defaultPosition): void
+	{
+		$this->defaultPosition = $defaultPosition;
 	}
 }

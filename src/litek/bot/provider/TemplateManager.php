@@ -19,6 +19,8 @@ declare(strict_types=1);
 namespace litek\bot\provider;
 
 use litek\bot\CustomPvPBot;
+use litek\bot\math\Vector3X;
+use pocketmine\math\Vector3;
 use litek\bot\provider\elements\Template;
 use pocketmine\entity\Skin;
 use pocketmine\utils\Config;
@@ -50,6 +52,9 @@ class TemplateManager
 				$templateConfig->get('health'),
 				$templateConfig->get('damage'),
 				$this->plugin->getSkinStorage()->getSkin($templateConfig->get('skin')),
+				$templateConfig->get('command'),
+				$templateConfig->get('respawn_time'),
+				Vector3X::toObject($templateConfig->get('default_position'))
 			);
 			$templateCount++;
 		}
@@ -88,11 +93,24 @@ class TemplateManager
 		return $templateList;
 	}
 
-	public function createTemplate(string $name, float $health, float $damage, Skin $skin){
+	public function createTemplate(string $name, float $health, float $damage, Skin $skin, string $command, int $respawnTime, Vector3 $defaultPosition){
 		if (isset($this->templates[$name])){
 			unset($this->templates[$name]);
 		}
-		$this->templates[$name] = new Template($name, $health,$damage, $skin);
+		$this->templates[$name] = new Template($name, $health,$damage, $skin, $command, $respawnTime, $defaultPosition);
+	}
+
+	public function editTemplate(string $template, string $name, float $health, float $damage, Skin $skin, string $command, int $respawnTime){
+		$old = $this->templates[$template];
+		$new = (clone $old);
+		$new->setName($name);
+		$new->setHealth($health);
+		$new->setDamage($damage);
+		$new->setSkin($skin);
+		$new->setCommand($command);
+		$new->setRespawnTime($respawnTime);
+		$this->removeTemplate($old->getName());
+		$this->templates[$new->getName()] = $new;
 	}
 
 }

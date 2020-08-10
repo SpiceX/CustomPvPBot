@@ -20,13 +20,14 @@ declare(strict_types=1);
 namespace litek\bot;
 
 use litek\bot\entity\types\Bot;
+use litek\bot\task\BotRespawnTask;
+use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerExhaustEvent;
 use pocketmine\Player;
-use pocketmine\Server;
 
 class BotListener implements Listener
 {
@@ -52,24 +53,38 @@ class BotListener implements Listener
 			if ($e instanceof EntityDamageByEntityEvent) {
 				$damager = $e->getDamager();
 				if ($damager instanceof Bot) {
-					$this->plugin->getServer()->broadcastMessage("§l§a»§r " . $player->getNameTag() ." §7lose a battle against bot §a" . $damager->name);
+					$this->plugin->getServer()->broadcastMessage("§l§a»§r " . $player->getNameTag() . " §7lose a battle against bot §a" . $damager->name);
+				}
+				$bot = $e->getEntity();
+				if ($damager instanceof Player && $bot instanceof Bot) {
+					if (($command = $bot->getCommand()) !== null) {
+						$hasCommandFormat = (bool)strpos($command, '{player}');
+						if ($hasCommandFormat) {
+							$this->plugin->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace('{player}', $damager->getName(), $command));
+						}
+					}
 				}
 			}
 		}
 	}
 
-	public function onEntityDamageByEntity(EntityDamageByEntityEvent $event){
+	public function onEntityDamageByEntity(EntityDamageByEntityEvent $event)
+	{
 		$damager = $event->getDamager();
 		$entity = $event->getEntity();
-		if ($damager instanceof Bot && $entity instanceof Player){
-			if ($this->plugin->getCombatLogger()->inCombat($entity)){
+		if ($damager instanceof Bot && $entity instanceof Player) {
+			if ($this->plugin->getCombatLogger()->inCombat($entity)) {
 				$event->setBaseDamage($damager->getAttackDamage());
 			}
 		}
-		if ($damager instanceof Player && $entity instanceof Bot){
-			if ($event->getFinalDamage() > $entity->getHealth()){
-				if ($this->plugin->getConfig()->get('command') !== 'default'){
-					Server::getInstance()->dispatchCommand($damager, $this->plugin->getConfig()->get('command'));
+		if ($damager instanceof Player && $entity instanceof Bot) {
+			if ($event->getFinalDamage() > $entity->getHealth()) {
+				CustomPvPBot::getInstance()->getScheduler()->scheduleRepeatingTask(new BotRespawnTask($entity), 20);
+				if (($command = $entity->getCommand()) !== null) {
+					$hasCommandFormat = (bool)strpos($command, '{player}');
+					if ($hasCommandFormat) {
+						$this->plugin->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace('{player}', $damager->getName(), $command));
+					}
 				}
 			}
 		}
@@ -90,7 +105,7 @@ class BotListener implements Listener
 	public function onExhaust(PlayerExhaustEvent $event): void
 	{
 		$player = $event->getPlayer();
-		if ($player instanceof Player){
+		if ($player instanceof Player) {
 			if ($this->plugin->getCombatLogger()->inCombat($player)) {
 				$event->setCancelled();
 			}

@@ -26,6 +26,7 @@ use litek\bot\provider\CombatLogger;
 use litek\bot\provider\SkinStorage;
 use litek\bot\provider\TemplateManager;
 use litek\bot\provider\YamlDataProvider;
+use litek\bot\task\BotLookingTask;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 
@@ -60,12 +61,21 @@ class CustomPvPBot extends PluginBase implements Listener
 	/**@var CommandManager */
 	private $commandManager;
 
+	/**
+	 * @return CustomPvPBot
+	 */
+	public static function getInstance(): CustomPvPBot
+	{
+		return self::$instance;
+	}
+
 	public function onEnable(): void
 	{
 		$this->initVariables();
 		$this->getLogger()->info("§l§6»§r §aCustomPvPBot activated");
 		$this->getLogger()->info("§l§6»§r §aMade by @LiTEK_");
 		$this->getLogger()->info("§l§6»§r §aLicense §e" . $this->getConfig()->get('license'));
+		$this->getScheduler()->scheduleRepeatingTask(new BotLookingTask($this), 20);
 	}
 
 	private function initVariables()
@@ -73,8 +83,8 @@ class CustomPvPBot extends PluginBase implements Listener
 		try {
 			self::$instance = $this;
 			$this->saveDefaultConfig();
-			$this->yamlProvider = new YamlDataProvider($this);
 			$this->skinStorage = new SkinStorage($this);
+			$this->yamlProvider = new YamlDataProvider($this);
 			$this->combatLogger = new CombatLogger($this);
 			$this->botListener = new BotListener($this);
 			$this->formManager = new FormManager($this);
@@ -90,7 +100,6 @@ class CustomPvPBot extends PluginBase implements Listener
 	{
 		$this->templateManager->saveAll();
 	}
-
 
 	/**
 	 * @return CombatLogger
@@ -130,14 +139,6 @@ class CustomPvPBot extends PluginBase implements Listener
 	public function getEntityManager(): EntityManager
 	{
 		return $this->entityManager;
-	}
-
-	/**
-	 * @return CustomPvPBot
-	 */
-	public static function getInstance(): CustomPvPBot
-	{
-		return self::$instance;
 	}
 
 }
