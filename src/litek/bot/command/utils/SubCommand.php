@@ -30,7 +30,7 @@ abstract class SubCommand {
 	private $usage;
 
 	/** @var string[] */
-	private $aliases = [];
+	private $aliases;
 
 	/**
 	 * SubCommand constructor.

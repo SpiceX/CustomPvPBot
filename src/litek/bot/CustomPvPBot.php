@@ -114,6 +114,9 @@ class CustomPvPBot extends PluginBase implements Listener
 	 */
 	public function getTemplateManager(): TemplateManager
 	{
+	    if (!$this->templateManager instanceof TemplateManager){
+	        $this->templateManager = new TemplateManager($this);
+        }
 		return $this->templateManager;
 	}
 

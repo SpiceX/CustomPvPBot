@@ -21,6 +21,16 @@
   <component name="ChangeListManager">
     <list default="true" id="33762287-3467-4e7f-b8a5-15bd982ed2d9" name="Default Changelist" comment="build 03">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/CustomPvPBot.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/CustomPvPBot.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/command/types/UserCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/command/types/UserCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/command/utils/SubCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/command/utils/SubCommand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/entity/EntityManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/entity/EntityManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/entity/types/Bot.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/entity/types/Bot.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/form/FormManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/form/FormManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/math/Vector3X.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/math/Vector3X.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/provider/TemplateManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/provider/TemplateManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/provider/elements/Template.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/provider/elements/Template.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/task/BotLookingTask.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/task/BotLookingTask.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/litek/bot/task/BotRespawnTask.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/task/BotRespawnTask.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -135,7 +145,8 @@
       <workItem from="1597156115046" duration="430000" />
       <workItem from="1597160109284" duration="171000" />
       <workItem from="1597160303622" duration="6822000" />
-      <workItem from="1597173590600" duration="96000" />
+      <workItem from="1597173590600" duration="203000" />
+      <workItem from="1597176557112" duration="8198000" />
     </task>
     <task id="LOCAL-00001" summary="build 02">
       <created>1597090296448</created>
@@ -151,7 +162,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597167455452</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="build 03">
+      <created>1597173786411</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1597173786411</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,9 +205,10 @@
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="0" y="30" width="1356" height="738" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.30.1366.738@0.30.1366.738" timestamp="1596979583742" />
-    <state x="416" y="166" width="524" height="490" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597084755565">
-      <screen x="0" y="30" width="1366" height="738" />
+    <state x="416" y="136" width="524" height="490" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597184632038">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state x="416" y="136" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.738@0.0.1366.738" timestamp="1597184632038" />
     <state x="416" y="142" width="524" height="490" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.768@0.0.1366.768" timestamp="1596989662256" />
     <state x="416" y="166" width="524" height="490" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.30.1366.738@0.30.1366.738" timestamp="1597084755565" />
     <state x="100" y="100" width="1166" height="568" key="DiffContextDialog" timestamp="1596977512059">
@@ -219,10 +238,10 @@
     </state>
     <state x="194" y="18" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1597168279853" />
     <state x="194" y="19" width="977" height="736" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1596976072531" />
-    <state x="278" y="105" width="800" height="534" key="Vcs.Push.Dialog.v2" timestamp="1597167460907">
+    <state x="278" y="105" width="800" height="534" key="Vcs.Push.Dialog.v2" timestamp="1597173789126">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="278" y="105" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1597167460907" />
+    <state x="278" y="105" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1597173789126" />
     <state x="278" y="135" width="800" height="534" key="Vcs.Push.Dialog.v2/0.30.1366.738@0.30.1366.738" timestamp="1597090306636" />
     <state x="393" y="100" width="584" height="538" key="find.popup" timestamp="1597165263586">
       <screen x="0" y="0" width="1366" height="738" />

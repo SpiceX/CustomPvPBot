@@ -21,6 +21,7 @@ namespace litek\bot\provider\elements;
 
 use litek\bot\CustomPvPBot;
 use litek\bot\math\Vector3X;
+use pocketmine\level\Position;
 use pocketmine\math\Vector3;
 use pocketmine\entity\Skin;
 use pocketmine\utils\Config;
@@ -45,10 +46,10 @@ class Template
 	/** @var int */
 	private $respawnTime;
 
-	/** @var Vector3 */
+	/** @var Position */
 	private $defaultPosition;
 
-	public function __construct(string $name, float $health, float $damage, Skin $skin, string $command, int $respawnTime, Vector3 $defaultPosition)
+	public function __construct(string $name, float $health, float $damage, Skin $skin, string $command, int $respawnTime, Position $defaultPosition)
 	{
 		$this->name = $name;
 		$this->health = $health;
@@ -59,7 +60,8 @@ class Template
 		$this->defaultPosition = $defaultPosition;
 	}
 
-	public function save(){
+	public function save(): void
+    {
 		$config = new Config($this->getPlugin()->getDataFolder() . 'templates' . "/{$this->name}.json", Config::JSON);
 		$config->set('name', $this->name);
 		$config->set('health', $this->health);
@@ -176,9 +178,9 @@ class Template
 	}
 
 	/**
-	 * @return Vector3
+	 * @return Position
 	 */
-	public function getDefaultPosition(): Vector3
+	public function getDefaultPosition(): Position
 	{
 		return $this->defaultPosition;
 	}

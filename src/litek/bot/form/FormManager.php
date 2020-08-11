@@ -12,8 +12,10 @@ use litek\bot\form\types\CustomForm;
 use litek\bot\form\types\CustomFormResponse;
 use litek\bot\form\types\MenuForm;
 use litek\bot\form\types\ModalForm;
+use litek\bot\math\Vector3X;
 use pocketmine\entity\InvalidSkinException;
 use pocketmine\Player;
+use pocketmine\utils\Config;
 
 class FormManager
 {
@@ -92,7 +94,7 @@ class FormManager
                 }
 
                 try {
-                    $bot = $this->plugin->getEntityManager()->prepareBot($player);
+                    $bot = $this->plugin->getEntityManager()->prepareBot($player,$player->asPosition());
                     $command = $response->getInput()->getValue();
                     $respawnTime = $response->getInput()->getValue();
                     $bot->setName($name);
@@ -101,7 +103,7 @@ class FormManager
                     $bot->setAttackDamage($damage);
                     $bot->setCommand($command);
                     $bot->setRespawnTime($respawnTime);
-                    $bot->setDefaultPosition($player->asVector3());
+                    $bot->setDefaultPosition($player->asPosition());
                     $bot->setSkin($skin);
                     $bot->sendSkin();
                     $bot->spawnToAll();
@@ -114,7 +116,7 @@ class FormManager
                 if ($player->hasPermission('template.create')) {
                     if ($save) {
                         if ($this->plugin->getSkinStorage()->getSkinCount() > 0){
-                            $this->plugin->getTemplateManager()->createTemplate($name, $health, $damage, $skin, $command, $respawnTime, $player->asVector3());
+                            $this->plugin->getTemplateManager()->createTemplate($name, $health, $damage, $skin, $command, $respawnTime, $player->asPosition());
                         } else {
                             $player->sendMessage("§cYou have not valid skins in data folder, template could not be created.");
                         }
@@ -133,10 +135,12 @@ class FormManager
         $player->sendForm(new MenuForm("§l§a»§r §7Edit Template §l§a«", "§7Select a template:",
             $this->getTemplateButtons(), function (Player $player, Button $selected): void {
                 $template = $this->plugin->getTemplateManager()->getTemplate($selected->getText());
+                $config = new Config($this->plugin->getDataFolder() . 'templates' . "/{$selected->getText()}.json", Config::JSON);
+                $position = $config->get('default_position');
                 try {
-                    if ($template !== null) {
-                        $bot = $this->plugin->getEntityManager()->prepareBot($player, $template->getDefaultPosition());
-                        $bot->teleport($template->getDefaultPosition());
+                    if ($template !== null && $position !== false) {
+                        $bot = $this->plugin->getEntityManager()->prepareBot($player, Vector3X::toObject($position));
+                        $bot->teleport($bot->getDefaultPosition());
                         $command = $template->getCommand();
                         $bot->setName($template->getName());
                         $bot->setMaxHealth($template->getHealth());

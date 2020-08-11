@@ -5,9 +5,11 @@ namespace litek\bot\task;
 use Exception;
 use litek\bot\CustomPvPBot;
 use litek\bot\entity\types\Bot;
+use litek\bot\math\Vector3X;
 use pocketmine\entity\InvalidSkinException;
 use pocketmine\Player;
 use pocketmine\scheduler\Task;
+use pocketmine\utils\Config;
 
 class BotRespawnTask extends Task
 {
@@ -30,6 +32,7 @@ class BotRespawnTask extends Task
 
     public function onRun(int $currentTick): void
     {
+        var_dump("TAREA EJECUTANDOSE");
         if ($this->seconds === null || $this->bot === null) {
             $this->getPlugin()->getScheduler()->cancelTask($this->getTaskId());
             return;
@@ -42,8 +45,11 @@ class BotRespawnTask extends Task
             }
             try {
                 $abusedPlayer = $this->getAbusingPlayer();
-                if ($abusedPlayer !== null) {
-                    $bot = $this->getPlugin()->getEntityManager()->prepareBot($abusedPlayer, $this->bot->getDefaultPosition());
+                $config = new Config(CustomPvPBot::getInstance()->getDataFolder() . 'templates' . "/{$this->bot->name}.json", Config::JSON);
+                $position = $config->get('default_position');
+                if ($abusedPlayer !== null && $position !== false) {
+                    $bot = $this->getPlugin()->getEntityManager()->prepareBot($abusedPlayer, Vector3X::toObject($position));
+                    $bot->teleport($this->bot->getDefaultPosition());
                     $command = $template->getCommand();
                     $bot->setName($template->getName());
                     $bot->setMaxHealth($template->getHealth());

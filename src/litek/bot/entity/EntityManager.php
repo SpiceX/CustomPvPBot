@@ -21,6 +21,7 @@ namespace litek\bot\entity;
 use litek\bot\CustomPvPBot;
 use litek\bot\entity\types\Bot;
 use pocketmine\entity\Entity;
+use pocketmine\level\Position;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 
@@ -35,18 +36,14 @@ class EntityManager
 		$this->registerEntities();
 	}
 
-	private function registerEntities()
-	{
+	private function registerEntities(): void
+    {
 		Entity::registerEntity(Bot::class, true);
 	}
 
-	public function prepareBot(Player $player, Vector3 $customPosition = null): Bot
+	public function prepareBot(Player $player, Position $customPosition): Bot
 	{
-		if ($customPosition !== null){
-			$nbt = Entity::createBaseNBT($customPosition);
-		} else {
-			$nbt = Entity::createBaseNBT($player->getLevel()->getSafeSpawn($player->asVector3()->subtract(15, 0, 15)));
-		}
+	    $nbt = Entity::createBaseNBT($customPosition);
 		$nbt->setTag($player->namedtag->getTag("Skin"));
 		$bot = new Bot($player->getLevel(), $nbt, $player->getName());
 		$bot->setDefaultPosition($player->asPosition());
