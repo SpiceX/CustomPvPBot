@@ -25,6 +25,7 @@ use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityDeathEvent;
+use pocketmine\event\entity\EntityDespawnEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerExhaustEvent;
@@ -33,90 +34,109 @@ use pocketmine\Player;
 class BotListener implements Listener
 {
 
-	/**
-	 * @var CustomPvPBot
-	 */
-	private $plugin;
+    /**
+     * @var CustomPvPBot
+     */
+    private $plugin;
 
-	public function __construct(CustomPvPBot $plugin)
-	{
-		$this->plugin = $plugin;
-		$plugin->getServer()->getPluginManager()->registerEvents($this, $plugin);
-	}
+    public function __construct(CustomPvPBot $plugin)
+    {
+        $this->plugin = $plugin;
+        $plugin->getServer()->getPluginManager()->registerEvents($this, $plugin);
+    }
 
-	public function onDeath(PlayerDeathEvent $event): void
-	{
-		$player = $event->getPlayer();
-		if ($this->plugin->getCombatLogger()->inCombat($player)) {
-			$event->setDrops([]);
-			$event->setDeathMessage('');
-			$e = $event->getPlayer()->getLastDamageCause();
-			if ($e instanceof EntityDamageByEntityEvent) {
-				$damager = $e->getDamager();
-				if ($damager instanceof Bot) {
-					$this->plugin->getServer()->broadcastMessage("§l§a»§r " . $player->getNameTag() . " §7lose a battle against bot §a" . $damager->name);
-				}
-				$bot = $e->getEntity();
-				if ($damager instanceof Player && $bot instanceof Bot) {
-					if (($command = $bot->getCommand()) !== null) {
-						$hasCommandFormat = (bool)strpos($command, '{player}');
-						if ($hasCommandFormat) {
-							$this->plugin->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace('{player}', $damager->getName(), $command));
-						}
-					}
-				}
-			}
-		}
-	}
+    public function onDeath(PlayerDeathEvent $event): void
+    {
+        $player = $event->getPlayer();
+        if ($this->plugin->getCombatLogger()->inCombat($player)) {
+            $event->setDrops([]);
+            $event->setDeathMessage('');
+            $e = $event->getPlayer()->getLastDamageCause();
+            if ($e instanceof EntityDamageByEntityEvent) {
+                $damager = $e->getDamager();
+                if ($damager instanceof Bot) {
+                    $this->plugin->getServer()->broadcastMessage("§l§a»§r " . $player->getNameTag() . " §7lose a battle against bot §a" . $damager->name);
+                }
+                $bot = $e->getEntity();
+                if ($damager instanceof Player && $bot instanceof Bot) {
+                    if (($command = $bot->getCommand()) !== null) {
+                        $hasCommandFormat = (bool)strpos($command, '{player}');
+                        if ($hasCommandFormat) {
+                            $this->plugin->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace('{player}', $damager->getName(), $command));
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-	public function onEntityDamageByEntity(EntityDamageByEntityEvent $event)
-	{
-		$damager = $event->getDamager();
-		$entity = $event->getEntity();
-		if ($damager instanceof Bot && $entity instanceof Player) {
-			if ($this->plugin->getCombatLogger()->inCombat($entity)) {
-				$event->setBaseDamage($damager->getAttackDamage());
-			}
-		}
-		if ($damager instanceof Player && $entity instanceof Bot) {
-			if ($event->getFinalDamage() > $entity->getHealth()) {
-				CustomPvPBot::getInstance()->getScheduler()->scheduleRepeatingTask(new BotRespawnTask($entity), 20);
-				if (($command = $entity->getCommand()) !== null) {
-					$hasCommandFormat = (bool)strpos($command, '{player}');
-					if ($hasCommandFormat) {
-						$this->plugin->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace('{player}', $damager->getName(), $command));
-					}
-				}
-			}
-		}
-	}
+    public function onEntityDamageByEntity(EntityDamageByEntityEvent $event): void
+    {
+        $damager = $event->getDamager();
+        $entity = $event->getEntity();
+        if ($damager instanceof Bot && $entity instanceof Player) {
+            if ($this->plugin->getCombatLogger()->inCombat($entity)) {
+                $event->setBaseDamage($damager->getAttackDamage());
+            }
+        }
+        if ($damager instanceof Player && $entity instanceof Bot) {
+            if ($event->getFinalDamage() > $entity->getHealth()) {
+                if (($command = $entity->getCommand()) !== null) {
+                    $hasCommandFormat = (bool)strpos($command, '{player}');
+                    if ($hasCommandFormat) {
+                        $this->plugin->getServer()->dispatchCommand(new ConsoleCommandSender(), str_replace('{player}', $damager->getName(), $command));
+                    }
+                }
+            }
+        }
+    }
 
-	public function onDamage(EntityDamageEvent $event): void
-	{
-		$player = $event->getEntity();
-		if ($player instanceof Player) {
-			if ($this->plugin->getCombatLogger()->inCombat($player)) {
-				if ($event->getCause() === EntityDamageEvent::CAUSE_FALL) {
-					$event->setCancelled();
-				}
-			}
-		}
-	}
-	
-	public function onEntityDespawn(EntityDeathEvent $event){
-		$entity = $event->getEntity();
-		if ($entity instanceof Bot){
+    public function onDamage(EntityDamageEvent $event): void
+    {
+        $player = $event->getEntity();
+        if ($player instanceof Player) {
+            if ($this->plugin->getCombatLogger()->inCombat($player)) {
+                if ($event->getCause() === EntityDamageEvent::CAUSE_FALL) {
+                    $event->setCancelled();
+                }
+            }
+        }
+    }
 
-		}
-	}
+    public function onEntityDeath(EntityDeathEvent $event): void
+    {
+        foreach ($this->plugin->getServer()->getLevels() as $level) {
+            foreach ($level->getEntities() as $entity) {
+                if ($entity instanceof Bot) {
+                    if ($entity->isFlaggedForDespawn()) {
+                        return;
+                    }
+                }
+            }
+        }
+    }
 
-	public function onExhaust(PlayerExhaustEvent $event): void
-	{
-		$player = $event->getPlayer();
-		if ($player instanceof Player) {
-			if ($this->plugin->getCombatLogger()->inCombat($player)) {
-				$event->setCancelled();
-			}
-		}
-	}
+    public function onEntityDespawn(EntityDespawnEvent $event): void
+    {
+        foreach ($this->plugin->getServer()->getLevels() as $level) {
+            foreach ($level->getEntities() as $entity) {
+                if ($entity instanceof Bot) {
+                    if ($entity->isFlaggedForDespawn()) {
+                        CustomPvPBot::getInstance()->getScheduler()->scheduleRepeatingTask(new BotRespawnTask($entity), 20);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    public function onExhaust(PlayerExhaustEvent $event): void
+    {
+        $player = $event->getPlayer();
+        if ($player instanceof Player) {
+            if ($this->plugin->getCombatLogger()->inCombat($player)) {
+                $event->setCancelled();
+            }
+        }
+    }
 }

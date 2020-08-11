@@ -18,6 +18,8 @@ declare(strict_types=1);
 
 namespace litek\bot\entity\types;
 
+use DivisionByZeroError;
+use pocketmine\block\Block;
 use pocketmine\block\Flowable;
 use pocketmine\block\Slab;
 use pocketmine\block\Stair;
@@ -61,12 +63,12 @@ class Bot extends Human
 	/** @var int|null */
 	private $respawnTime;
 
-	/**
-	 * bot constructor.
-	 * @param Level $level
-	 * @param CompoundTag $nbt
-	 * @param string $target
-	 */
+    /**
+     * bot constructor.
+     * @param Level $level
+     * @param CompoundTag $nbt
+     * @param string|null $target
+     */
 	public function __construct(Level $level, CompoundTag $nbt, string $target = null)
 	{
 		parent::__construct($level, $nbt);
@@ -83,11 +85,9 @@ class Bot extends Human
 	{
 		parent::entityBaseTick($tickDiff);
 		if (!$this->isAlive() || $this->getTargetPlayer() === null || !$this->getTargetPlayer()->isAlive()) {
-			if ($this->hasTarget) {
-				if (!$this->closed) {
-					$this->flagForDespawn();
-				}
-			}
+			if ($this->hasTarget && !$this->closed) {
+                $this->flagForDespawn();
+            }
 			return false;
 		}
 		$this->setNameTagAlwaysVisible(true);
@@ -103,9 +103,13 @@ class Bot extends Human
 		if ($this->jumpTicks > 0) {
 			$this->jumpTicks--;
 		}
-		if ($x != 0 || $z != 0) {
-			$this->motion->x = $this->getSpeed() * 0.35 * ($x / (abs($x) + abs($z)));
-			$this->motion->z = $this->getSpeed() * 0.35 * ($z / (abs($x) + abs($z)));
+		if ($x !== 0 || $z !== 0) {
+            try {
+                $this->motion->x = $this->getSpeed() * 0.35 * ($x / (abs($x) + abs($z)));
+                $this->motion->z = $this->getSpeed() * 0.35 * ($z / (abs($x) + abs($z)));
+            } catch (DivisionByZeroError $error){
+                // pass
+            }
 		}
 		if (!$this->isOnGround()) {
 			if ($this->motion->y > -$this->gravity * 4) {
@@ -143,10 +147,10 @@ class Bot extends Human
 			if ($this->getTargetPlayer() === null) {
 				$this->flagForDespawn();
 				return false;
-			} else {
-				$this->attackTargetPlayer();
 			}
-		}
+
+            $this->attackTargetPlayer();
+        }
 		if ($this->distance($this->getTargetPlayer()) > 20) {
 			$this->pearl();
 		}
@@ -157,7 +161,8 @@ class Bot extends Human
 			$this->setSprinting(false);
 			$this->speed = 0.4;
 		}
-		if ($this->distance($this->getTargetPlayer()) > 0.25 && $this->distance($this->getTargetPlayer()) < 4 && $this->getTargetPlayer()->getHealth() <= 15 && $this->canThrowPearl()) {
+		$targetDistance = $this->distance($this->getTargetPlayer());
+		if ($targetDistance > 0.25 && $targetDistance < 4 && $this->getTargetPlayer()->getHealth() <= 15 && $this->canThrowPearl()) {
 			$this->pearl(true);
 		}
 		if ($this->shouldJump()) {
@@ -193,21 +198,23 @@ class Bot extends Human
 		return $this->hitTick !== null ? Server::getInstance()->getTick() - $this->hitTick <= 4 : false;
 	}
 
-	public function shouldJump()
-	{
-		if ($this->jumpTicks > 0) return false;
+	public function shouldJump(): bool
+    {
+		if ($this->jumpTicks > 0) {
+            return false;
+        }
 		return $this->isCollidedHorizontally ||
-			($this->getFrontBlock()->getId() != 0 || $this->getFrontBlock(-1) instanceof Stair) ||
-			($this->getLevel()->getBlock($this->asVector3()->add(0, -0, 5)) instanceof Slab &&
-				(!$this->getFrontBlock(-0.5) instanceof Slab && $this->getFrontBlock(-0.5)->getId() != 0)) &&
-			$this->getFrontBlock(1)->getId() == 0 &&
-			$this->getFrontBlock(2)->getId() == 0 &&
-			!$this->getFrontBlock() instanceof Flowable &&
-			$this->jumpTicks == 0;
+			($this->getFrontBlock()->getId() !== 0 || $this->getFrontBlock(-1) instanceof Stair) ||
+            (($this->getLevel()->getBlock($this->asVector3()->add(0, -0, 5)) instanceof Slab &&
+                    (!$this->getFrontBlock(-0.5) instanceof Slab && $this->getFrontBlock(-0.5)->getId() !== 0)) &&
+                $this->getFrontBlock(1)->getId() === 0 &&
+                $this->getFrontBlock(2)->getId() === 0 &&
+                !$this->getFrontBlock() instanceof Flowable &&
+                $this->jumpTicks === 0);
 	}
 
-	public function getFrontBlock($y = 0)
-	{
+	public function getFrontBlock($y = 0): Block
+    {
 		$dv = $this->getDirectionVector();
 		$pos = $this->asVector3()->add($dv->x * $this->getScale(), $y + 1, $dv->z * $this->getScale())->round();
 		return $this->getLevel()->getBlock($pos);
@@ -220,14 +227,14 @@ class Bot extends Human
 		$this->jumpTicks = 5; //($this->getJumpMultiplier() == 4 ? 2 : 5);
 	}
 
-	public function getJumpMultiplier()
-	{
+	public function getJumpMultiplier(): int
+    {
 		return 16;
 	}
 
 	public function attackTargetPlayer(): void
 	{
-		if (mt_rand(0, 100) % 4 === 0) {
+		if (random_int(0, 100) % 4 === 0) {
 			$this->lookAt($this->getTargetPlayer()->asVector3());
 		}
 		if ($this->jumpTicks > 0) {
@@ -278,7 +285,7 @@ class Bot extends Human
 				$this->agroCooldown = Server::getInstance()->getTick();
 			}
 			--$this->pearlsRemaining;
-			$this->teleport($this->getTargetPlayer()->asVector3()->subtract(mt_rand(0, $max), 0, mt_rand(0, $max)));
+			$this->teleport($this->getTargetPlayer()->asVector3()->subtract(random_int(0, $max), 0, random_int(0, $max)));
 		}
 	}
 
@@ -290,14 +297,14 @@ class Bot extends Human
 		return $this->agroCooldown === null ? true : Server::getInstance()->getTick() - $this->agroCooldown >= 175;
 	}
 
-	public function playerLooksAt(Player $player)
-	{
+	public function playerLooksAt(Player $player): void
+    {
 		$this->target = $player->getName();
 		$this->hasTarget = true;
 	}
 
-	public function setName(string $name)
-	{
+	public function setName(string $name): void
+    {
 		$this->name = $name;
 	}
 
@@ -306,8 +313,8 @@ class Bot extends Human
 		return $this->attackDamage;
 	}
 
-	public function setAttackDamage(float $attackDamage)
-	{
+	public function setAttackDamage(float $attackDamage): void
+    {
 		$this->attackDamage = $attackDamage;
 	}
 
@@ -331,9 +338,9 @@ class Bot extends Human
 	}
 
 	/**
-	 * @return string
+	 * @return string|null
 	 */
-	public function getCommand(): string
+	public function getCommand(): ?string
 	{
 		return $this->command;
 	}
@@ -354,8 +361,8 @@ class Bot extends Human
 		return $this->defaultPosition;
 	}
 
-	public function setDefaultPosition(Vector3 $position)
-	{
+	public function setDefaultPosition(Vector3 $position): void
+    {
 		$this->defaultPosition = $position;
 	}
 

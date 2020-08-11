@@ -28,7 +28,7 @@ class BotRespawnTask extends Task
 		$this->seconds = $bot->getRespawnTime();
 	}
 
-	public function onRun(int $currentTick)
+	public function onRun(int $currentTick): void
 	{
 		if ($this->seconds === null || $this->bot === null){
 			$this->getPlugin()->getScheduler()->cancelTask($this->getTaskId());
@@ -41,17 +41,24 @@ class BotRespawnTask extends Task
 				return;
 			}
 			try {
-				$bot = $this->getPlugin()->getEntityManager()->prepareBot($this->getAbusingPlayer(), $this->bot->getDefaultPosition());
-				$command = $template->getCommand();
-				$bot->setName($template->getName());
-				$bot->setMaxHealth($template->getHealth());
-				$bot->setHealth($template->getHealth());
-				$bot->setAttackDamage($template->getDamage());
-				$bot->setCommand($command);
-				$bot->setSkin($template->getSkin());
-				$bot->setRespawnTime($template->getRespawnTime());
-				$bot->sendSkin();
-				$bot->spawnToAll();
+			    $abusedPlayer= $this->getAbusingPlayer();
+			    if ($abusedPlayer !== null){
+                    $bot = $this->getPlugin()->getEntityManager()->prepareBot($abusedPlayer, $this->bot->getDefaultPosition());
+                    $command = $template->getCommand();
+                    $bot->setName($template->getName());
+                    $bot->setMaxHealth($template->getHealth());
+                    $bot->setHealth($template->getHealth());
+                    $bot->setAttackDamage($template->getDamage());
+                    $bot->setCommand($command);
+                    $bot->setSkin($template->getSkin());
+                    $bot->setRespawnTime($template->getRespawnTime());
+                    $bot->sendSkin();
+                    if (!$bot->isFlaggedForDespawn()){
+                        $bot->spawnToAll();
+                        $this->getPlugin()->getScheduler()->cancelTask($this->getTaskId());
+                        return;
+                    }
+                }
 			} catch (InvalidSkinException $exception) {
 				$this->getPlugin()->getScheduler()->cancelTask($this->getTaskId());
 				return;

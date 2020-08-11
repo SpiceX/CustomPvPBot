@@ -20,10 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33762287-3467-4e7f-b8a5-15bd982ed2d9" name="Default Changelist" comment="build 02">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/plugin.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/litek/bot/BotListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/BotListener.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/litek/bot/entity/types/Bot.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/entity/types/Bot.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/form/FormManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/form/FormManager.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/litek/bot/task/BotRespawnTask.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/task/BotRespawnTask.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +35,7 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/../../composer.json</pharConfigPath>
     <execution>
-      <phar pharPath="$PROJECT_DIR$/../../composer.phar" interpreterId="2ac5fa43-c4fb-442f-98b5-8a9866642a62" />
+      <phar pharPath="$PROJECT_DIR$/../../composer.phar" interpreterId="3f70b2f9-18e7-44d3-9f43-61b350a09caa" />
     </execution>
   </component>
   <component name="Git.Settings">
@@ -49,7 +50,6 @@
       <path value="$PROJECT_DIR$/../../vendor/phpstan/phpstan" />
       <path value="$PROJECT_DIR$/../../vendor/phpstan/phpstan-phpunit" />
       <path value="$PROJECT_DIR$/../../vendor/phpstan/phpstan-strict-rules" />
-      <path value="$PROJECT_DIR$/../../vendor/phpunit/php-token-stream" />
       <path value="$PROJECT_DIR$/../../vendor/phpunit/php-text-template" />
       <path value="$PROJECT_DIR$/../../vendor/phpunit/php-timer" />
       <path value="$PROJECT_DIR$/../../vendor/phpunit/php-invoker" />
@@ -90,6 +90,9 @@
       <path value="$PROJECT_DIR$/../../vendor/composer" />
       <path value="$PROJECT_DIR$/../../vendor/phpdocumentor/reflection-common" />
       <path value="$PROJECT_DIR$/../../vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/../../vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/../../vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/../../vendor/sebastian/lines-of-code" />
     </include_path>
   </component>
   <component name="ProjectId" id="1frUktxByk6IgjZuTaL3wY0qV2q" />
@@ -103,9 +106,10 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documentos/LinuxShared/Bots/PraticeBot-2f97c42db6d97b7585e3e2752a61e32fa7f69d4d/src/PraticeBot/PraticeBot.php" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../bin/php/php.exe" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.composer" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
     <property name="two.files.diff.last.used.file" value="$USER_HOME$/Documentos/LinuxShared/Bots/PraticeBot-2f97c42db6d97b7585e3e2752a61e32fa7f69d4d/src/PraticeBot/PraticeBot.php" />
   </component>
   <component name="RecentsManager">
@@ -116,6 +120,7 @@
       <recent name="$PROJECT_DIR$/src/litek" />
     </key>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -132,6 +137,8 @@
       <workItem from="1597073622839" duration="16171000" />
       <workItem from="1597154068683" duration="1280000" />
       <workItem from="1597156115046" duration="430000" />
+      <workItem from="1597160109284" duration="171000" />
+      <workItem from="1597160303622" duration="6160000" />
     </task>
     <task id="LOCAL-00001" summary="build 02">
       <created>1597090296448</created>
@@ -142,6 +149,9 @@
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -160,6 +170,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="build 02" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="262" y="26" key="#CLI_Interpreters" timestamp="1597160202234">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="262" y="26" key="#CLI_Interpreters/0.0.1366.738@0.0.1366.738" timestamp="1597160202234" />
     <state x="491" y="118" width="374" height="568" key="#com.intellij.ide.util.MemberChooser" timestamp="1597076757054">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
@@ -177,9 +191,10 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="100" y="100" width="1166" height="568" key="DiffContextDialog/0.0.1366.768@0.0.1366.768" timestamp="1596977512059" />
-    <state x="465" y="145" width="424" height="490" key="FileChooserDialogImpl" timestamp="1596976657408">
-      <screen x="0" y="0" width="1366" height="768" />
+    <state x="465" y="139" width="424" height="490" key="FileChooserDialogImpl" timestamp="1597160179376">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state x="465" y="139" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1597160179376" />
     <state x="465" y="145" width="424" height="490" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1596976657408" />
     <state x="558" y="288" width="249" height="197" key="Github.ShareDialog" timestamp="1597001815047">
       <screen x="0" y="0" width="1366" height="768" />
@@ -194,17 +209,19 @@
     </state>
     <state x="392" y="115" width="571" height="544" key="NewPhpClassDialog/0.0.1366.768@0.0.1366.768" timestamp="1597075268512" />
     <state x="392" y="141" width="673" height="556" key="NewPhpClassDialog/0.30.1366.738@0.30.1366.738" timestamp="1597087289015" />
-    <state x="194" y="19" width="977" height="736" key="SettingsEditor" timestamp="1596976072531">
-      <screen x="0" y="0" width="1366" height="768" />
+    <state x="194" y="18" width="977" height="736" key="SettingsEditor" timestamp="1597160397213">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state x="194" y="18" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1597160397213" />
     <state x="194" y="19" width="977" height="736" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1596976072531" />
     <state x="278" y="135" width="800" height="534" key="Vcs.Push.Dialog.v2" timestamp="1597090306636">
       <screen x="0" y="30" width="1366" height="738" />
     </state>
     <state x="278" y="135" width="800" height="534" key="Vcs.Push.Dialog.v2/0.30.1366.738@0.30.1366.738" timestamp="1597090306636" />
-    <state x="393" y="130" width="579" height="538" key="find.popup" timestamp="1597090171709">
-      <screen x="0" y="30" width="1366" height="738" />
+    <state x="393" y="100" width="584" height="538" key="find.popup" timestamp="1597165263586">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state x="393" y="100" width="584" height="538" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1597165263586" />
     <state x="393" y="104" width="579" height="560" key="find.popup/0.0.1366.768@0.0.1366.768" timestamp="1597004945752" />
     <state x="393" y="130" width="579" height="538" key="find.popup/0.30.1366.738@0.30.1366.738" timestamp="1597090171709" />
     <state x="347" y="175" key="run.anything.popup" timestamp="1597083669655">
