@@ -19,20 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33762287-3467-4e7f-b8a5-15bd982ed2d9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/litek/bot/math/Vector3X.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/litek/bot/task/BotLookingTask.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/litek/bot/task/BotRespawnTask.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/litek/bot/util/InteractionHelper.php" afterDir="false" />
+    <list default="true" id="33762287-3467-4e7f-b8a5-15bd982ed2d9" name="Default Changelist" comment="build 02">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/plugin.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/litek/bot/BotListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/BotListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/litek/bot/CustomPvPBot.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/CustomPvPBot.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/litek/bot/entity/EntityManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/entity/EntityManager.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/litek/bot/entity/types/Bot.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/entity/types/Bot.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/litek/bot/form/FormManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/form/FormManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/litek/bot/provider/TemplateManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/provider/TemplateManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/litek/bot/provider/elements/Template.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/provider/elements/Template.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/task/BotRespawnTask.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/task/BotRespawnTask.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,8 +129,18 @@
       <workItem from="1596975883139" duration="11020000" />
       <workItem from="1596988035089" duration="18065000" />
       <workItem from="1597020211532" duration="5919000" />
-      <workItem from="1597073622839" duration="15860000" />
+      <workItem from="1597073622839" duration="16171000" />
+      <workItem from="1597154068683" duration="1280000" />
+      <workItem from="1597156115046" duration="430000" />
     </task>
+    <task id="LOCAL-00001" summary="build 02">
+      <created>1597090296448</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1597090296448</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -151,6 +153,11 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="build 02" />
+    <option name="LAST_COMMIT_MESSAGE" value="build 02" />
   </component>
   <component name="WindowStateProjectService">
     <state x="491" y="118" width="374" height="568" key="#com.intellij.ide.util.MemberChooser" timestamp="1597076757054">
@@ -191,6 +198,10 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="194" y="19" width="977" height="736" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1596976072531" />
+    <state x="278" y="135" width="800" height="534" key="Vcs.Push.Dialog.v2" timestamp="1597090306636">
+      <screen x="0" y="30" width="1366" height="738" />
+    </state>
+    <state x="278" y="135" width="800" height="534" key="Vcs.Push.Dialog.v2/0.30.1366.738@0.30.1366.738" timestamp="1597090306636" />
     <state x="393" y="130" width="579" height="538" key="find.popup" timestamp="1597090171709">
       <screen x="0" y="30" width="1366" height="738" />
     </state>

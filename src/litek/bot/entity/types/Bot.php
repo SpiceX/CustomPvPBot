@@ -58,7 +58,7 @@ class Bot extends Human
 	private $command;
 	/** @var int|mixed|Position */
 	private $defaultPosition;
-	/** @var int */
+	/** @var int|null */
 	private $respawnTime;
 
 	/**
@@ -378,7 +378,7 @@ class Bot extends Human
 	/**
 	 * @return int
 	 */
-	public function getRespawnTime(): int
+	public function getRespawnTime(): ?int
 	{
 		return $this->respawnTime;
 	}

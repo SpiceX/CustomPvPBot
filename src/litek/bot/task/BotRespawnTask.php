@@ -30,6 +30,10 @@ class BotRespawnTask extends Task
 
 	public function onRun(int $currentTick)
 	{
+		if ($this->seconds === null || $this->bot === null){
+			$this->getPlugin()->getScheduler()->cancelTask($this->getTaskId());
+			return;
+		}
 		if ($this->seconds <= 0) {
 			$template = $this->getPlugin()->getTemplateManager()->getTemplate($this->bot->name);
 			if ($template === null){
@@ -49,8 +53,10 @@ class BotRespawnTask extends Task
 				$bot->sendSkin();
 				$bot->spawnToAll();
 			} catch (InvalidSkinException $exception) {
+				$this->getPlugin()->getScheduler()->cancelTask($this->getTaskId());
 				return;
 			} catch (Exception $exception){
+				$this->getPlugin()->getScheduler()->cancelTask($this->getTaskId());
 				return;
 			}
 			$this->bot->spawnToAll();

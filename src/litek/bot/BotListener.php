@@ -24,6 +24,7 @@ use litek\bot\task\BotRespawnTask;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\event\entity\EntityDeathEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerExhaustEvent;
@@ -99,6 +100,13 @@ class BotListener implements Listener
 					$event->setCancelled();
 				}
 			}
+		}
+	}
+	
+	public function onEntityDespawn(EntityDeathEvent $event){
+		$entity = $event->getEntity();
+		if ($entity instanceof Bot){
+
 		}
 	}
 
