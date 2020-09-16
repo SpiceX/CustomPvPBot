@@ -19,22 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="33762287-3467-4e7f-b8a5-15bd982ed2d9" name="Default Changelist" comment="build 04">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/litek/bot/session/Session.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/litek/bot/session/SessionFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/litek/bot/util/Utils.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="33762287-3467-4e7f-b8a5-15bd982ed2d9" name="Default Changelist" comment="build 15-sep-2020">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/litek/bot/BotListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/BotListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/litek/bot/CustomPvPBot.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/CustomPvPBot.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/litek/bot/command/types/UserCommand.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/command/types/UserCommand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/litek/bot/entity/types/Bot.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/entity/types/Bot.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/litek/bot/form/FormManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/form/FormManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/litek/bot/provider/SkinStorage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/provider/SkinStorage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/litek/bot/provider/TemplateManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/provider/TemplateManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/litek/bot/task/BotLookingTask.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/task/BotLookingTask.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/litek/bot/task/BotRespawnTask.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/litek/bot/entity/EntityManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/litek/bot/entity/EntityManager.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +154,8 @@
       <workItem from="1599920449192" duration="1782000" />
       <workItem from="1600089070737" duration="1350000" />
       <workItem from="1600184253922" duration="1044000" />
-      <workItem from="1600280671601" duration="1435000" />
+      <workItem from="1600280671601" duration="1693000" />
+      <workItem from="1600295437895" duration="171000" />
     </task>
     <task id="LOCAL-00001" summary="build 02">
       <created>1597090296448</created>
@@ -197,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597185819139</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="build 15-sep-2020">
+      <created>1600282201731</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1600282201731</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,7 +214,8 @@
     <MESSAGE value="build 02" />
     <MESSAGE value="build 03" />
     <MESSAGE value="build 04" />
-    <option name="LAST_COMMIT_MESSAGE" value="build 04" />
+    <MESSAGE value="build 15-sep-2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="build 15-sep-2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="262" y="26" key="#CLI_Interpreters" timestamp="1597160202234">
@@ -268,10 +264,10 @@
     </state>
     <state x="194" y="18" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1597168279853" />
     <state x="194" y="19" width="977" height="736" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1596976072531" />
-    <state x="278" y="105" width="800" height="534" key="Vcs.Push.Dialog.v2" timestamp="1597185822077">
+    <state x="278" y="105" width="800" height="534" key="Vcs.Push.Dialog.v2" timestamp="1600282206076">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="278" y="105" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1597185822077" />
+    <state x="278" y="105" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1600282206076" />
     <state x="278" y="135" width="800" height="534" key="Vcs.Push.Dialog.v2/0.30.1366.738@0.30.1366.738" timestamp="1597090306636" />
     <state x="393" y="100" width="584" height="538" key="find.popup" timestamp="1599921904578">
       <screen x="0" y="0" width="1366" height="738" />

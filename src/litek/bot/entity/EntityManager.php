@@ -24,6 +24,7 @@ use pocketmine\entity\Entity;
 use pocketmine\level\Position;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
+use pocketmine\Server;
 
 class EntityManager
 {
@@ -44,7 +45,14 @@ class EntityManager
 	public function prepareBot(Player $player, Position $customPosition): Bot
 	{
 	    $nbt = Entity::createBaseNBT($customPosition);
-		$nbt->setTag($player->namedtag->getTag("Skin"));
+        foreach (Server::getInstance()->getOnlinePlayers() as $onlinePlayer) {
+            $skin = $onlinePlayer->namedtag->getTag("Skin");
+            if ($skin !== null){
+                $allowedSkin = $skin;
+                break;
+            }
+        }
+		$nbt->setTag($allowedSkin);
 		$bot = new Bot($player->getLevel(), $nbt, $player->getName());
 		$bot->setDefaultPosition($player->asPosition());
 		$bot->setNameTagAlwaysVisible(true);
