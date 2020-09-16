@@ -20,10 +20,12 @@ namespace litek\bot\command\types;
 
 use litek\bot\command\utils\Command;
 use litek\bot\CustomPvPBot;
+use litek\bot\entity\types\Bot;
 use litek\bot\math\Vector3X;
 use pocketmine\command\CommandSender;
 use pocketmine\entity\InvalidSkinException;
 use pocketmine\Player;
+use pocketmine\Server;
 use pocketmine\utils\Config;
 
 class UserCommand extends Command
@@ -36,7 +38,6 @@ class UserCommand extends Command
     {
         parent::__construct("bot", "CustomPvPBot user command", "§l§c» §r§7/bot help", ["bot"]);
         $this->plugin = $plugin;
-        $this->setPermission('bot.cmd');
     }
 
     /**
@@ -46,19 +47,24 @@ class UserCommand extends Command
      */
     public function execute(CommandSender $sender, string $commandLabel, array $args): void
     {
-        if (!$this->testPermission($sender)) {
-            $sender->sendMessage("§l§a»§r §cYou are not allowed to use this command!");
-            return;
-        }
         if ($sender instanceof Player) {
             if (isset($args[0]) && $args[0] === 'spawn') {
                 if (isset($args[1])) {
+                    foreach (Server::getInstance()->getLevels() as $level) {
+                        foreach ($level->getEntities() as $entity) {
+                            if ($entity instanceof Bot && $entity->name === $args[1]){
+                                return;
+                            }
+                        }
+                    }
                     $template = $this->getPlugin()->getTemplateManager()->getTemplate($args[1]);
                     try {
                         $config = new Config(CustomPvPBot::getInstance()->getDataFolder() . 'templates' . "/{$args[1]}.json", Config::JSON);
                         $position = $config->get('default_position');
                         if ($template !== null && $position !== false) {
-                            $bot = $this->getPlugin()->getEntityManager()->prepareBot($sender, Vector3X::toObject($position));
+                            $bot = $this->getPlugin()->getEntityManager()->prepareBot($sender, $pos = Vector3X::toObject($position));
+                            $chunk = $pos->getLevel()->getChunk($pos->getFloorX() >> 4, $pos->getFloorZ() >> 4, true);
+                            $pos->getLevel()->loadChunk($chunk->getX(), $chunk->getZ());
                             $bot->teleport(Vector3X::toObject($position));
                             $command = $template->getCommand();
                             $bot->setName($template->getName());
@@ -80,6 +86,10 @@ class UserCommand extends Command
                     }
                     return;
                 }
+            }
+            if (!$sender->isOp()) {
+                $sender->sendMessage("§l§a»§r §cYou are not allowed to use this command!");
+                return;
             }
             $this->plugin->getFormManager()->sendBotPanel($sender);
         }

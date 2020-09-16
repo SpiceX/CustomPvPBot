@@ -20,10 +20,11 @@ namespace litek\bot\provider;
 
 use litek\bot\CustomPvPBot;
 use litek\bot\math\Vector3X;
-use pocketmine\level\Position;
-use pocketmine\math\Vector3;
 use litek\bot\provider\elements\Template;
 use pocketmine\entity\Skin;
+use pocketmine\level\Position;
+use pocketmine\math\Vector3;
+use pocketmine\Server;
 use pocketmine\utils\Config;
 
 class TemplateManager
@@ -34,6 +35,10 @@ class TemplateManager
     /** @var Template[] */
     private $templates = [];
 
+    /**
+     * TemplateManager constructor.
+     * @param CustomPvPBot $plugin
+     */
     public function __construct(CustomPvPBot $plugin)
     {
         $this->plugin = $plugin;
@@ -42,32 +47,46 @@ class TemplateManager
         }
     }
 
+    /**
+     * @return int
+     */
     public function loadTemplates(): int
     {
         $templateCount = 0;
         foreach (glob($this->plugin->getDataFolder() . "templates" . DIRECTORY_SEPARATOR . "*.json") as $template) {
+            if (!$this->isValidJSON($template)) {
+                $this->plugin->getLogger()->emergency("§cAn invalid JSON file has been encountered.");
+                continue;
+            }
             $templateName = basename($template, ".json");
             $templateConfig = new Config($template, Config::JSON);
             $this->templates[$templateName] = new Template(
-                $templateConfig->get('name'),
-                $templateConfig->get('health'),
-                $templateConfig->get('damage'),
-                $this->plugin->getSkinStorage()->getSkin($templateConfig->get('skin')),
-                $templateConfig->get('command'),
-                $templateConfig->get('respawn_time'),
-                Vector3X::toObject($templateConfig->get('default_position'))
+                $templateConfig->get('name', ''),
+                $templateConfig->get('health', 20),
+                $templateConfig->get('damage', 1.0),
+                $this->plugin->getSkinStorage()->getSkin($templateConfig->get('skin') ?: array_rand($this->plugin->getSkinStorage()->getSkins())),
+                $templateConfig->get('command', ' '),
+                $templateConfig->get('respawn_time', 0),
+                Vector3X::toObject($templateConfig->getNested('default_position', '0:0:0:' . Server::getInstance()->getDefaultLevel()->getFolderName()))
             );
             $templateCount++;
         }
         return $templateCount;
     }
 
+    /**
+     * @param $raw_json
+     * @return bool
+     * @noinspection JsonEncodingApiUsageInspection
+     */
+    private function isValidJSON($raw_json): bool
+    {
+        return json_decode(file_get_contents($raw_json), true, 512) !== NULL;
+    }
+
     public function getTemplate(string $template): ?Template
     {
-        if (isset($this->templates[$template])) {
-            return $this->templates[$template];
-        }
-        return null;
+        return $this->templates[$template] ?? null;
     }
 
     public function removeTemplate(string $template): void

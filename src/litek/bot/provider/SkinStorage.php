@@ -50,8 +50,8 @@ class SkinStorage
 		return $this->skinCount;
 	}
 
-	private function getBytes(string $path)
-	{
+	private function getBytes(string $path): string
+    {
 		$img = @imagecreatefrompng($path);
 		$skin_bytes = '';
 		for ($y = 0, $yMax = @imagesy($img); $y < $yMax; $y++) {
@@ -83,13 +83,19 @@ class SkinStorage
 	 */
 	public function getSkin(string $skinName): ?Skin
 	{
-		if (isset($this->skins[$skinName])) {
-			return $this->skins[$skinName];
-		}
-		return null;
-	}
+        return $this->skins[$skinName] ?? null;
+    }
 
-	public function getSkinCount(){
+	public function getSkinCount(): int
+    {
 		return $this->skinCount;
 	}
+
+    /**
+     * @return Skin[]
+     */
+    public function getSkins(): array
+    {
+        return $this->skins;
+    }
 }

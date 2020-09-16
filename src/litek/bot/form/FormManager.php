@@ -3,6 +3,7 @@
 namespace litek\bot\form;
 
 use litek\bot\CustomPvPBot;
+use litek\bot\entity\types\Bot;
 use litek\bot\form\elements\Button;
 use litek\bot\form\elements\Dropdown;
 use litek\bot\form\elements\Input;
@@ -16,6 +17,7 @@ use litek\bot\math\Vector3X;
 use pocketmine\entity\InvalidSkinException;
 use pocketmine\Player;
 use pocketmine\utils\Config;
+use TypeError;
 
 class FormManager
 {
@@ -78,7 +80,7 @@ class FormManager
                 new Slider("§7Bot damage", 1.0, 100.0, 1.0),
                 $this->plugin->getSkinStorage()->getSkinCount() > 0 ? new Dropdown("§7Bot skin", $this->plugin->getSkinStorage()->getSkinList()) : new Dropdown("§7Bot skin", ['Default player skin']),
                 new Input("Command", "/command {player} [args]"),
-                new Input("Respawn time (seconds)", "1200"),
+                new Input("Respawn time (seconds)", "1200", 0),
                 new Toggle("§fSave as template")
             ],
             function (Player $player, CustomFormResponse $response): void {
@@ -90,11 +92,18 @@ class FormManager
                     $skin = $player->getSkin();
                 } else {
                     $skin = $response->getDropdown()->getSelectedOption();
-                    $skin = $this->plugin->getSkinStorage()->getSkin($skin);
+                    $skin = $this->plugin->getSkinStorage()->getSkin($skin) ?? $player->getSkin();
                 }
 
                 try {
+                    foreach ($player->getLevel()->getEntities() as $entity) {
+                        if ($entity instanceof Bot && !$entity->isFlaggedForDespawn()){
+                            $entity->close();
+                        }
+                    }
                     $bot = $this->plugin->getEntityManager()->prepareBot($player,$player->asPosition());
+                    $chunk = $bot->getLevel()->getChunk($bot->asPosition()->getFloorX() >> 4, $bot->asPosition()->getFloorZ() >> 4, true);
+                    $bot->getLevel()->loadChunk($chunk->getX(), $chunk->getZ());
                     $command = $response->getInput()->getValue();
                     $respawnTime = $response->getInput()->getValue();
                     $bot->setName($name);
@@ -106,11 +115,14 @@ class FormManager
                     $bot->setDefaultPosition($player->asPosition());
                     $bot->setSkin($skin);
                     $bot->sendSkin();
-                    $bot->spawnToAll();
                 } catch (InvalidSkinException $exception) {
                     $player->sendMessage("§cA valid skin is needed to summon a bot, please change your skin and join again.");
                     return;
+                } catch (TypeError $exception){
+                    $player->sendMessage("§cYou have incomplete data in the form, may have problems.");
+                    return;
                 }
+                $bot->spawnToAll();
 
                 $save = $response->getToggle()->getValue();
                 if ($player->hasPermission('template.create')) {
@@ -139,7 +151,14 @@ class FormManager
                 $position = $config->get('default_position');
                 try {
                     if ($template !== null && $position !== false) {
+                        foreach ($player->getLevel()->getEntities() as $entity) {
+                            if ($entity instanceof Bot && !$entity->isFlaggedForDespawn()){
+                                $entity->close();
+                            }
+                        }
                         $bot = $this->plugin->getEntityManager()->prepareBot($player, Vector3X::toObject($position));
+                        $chunk = $bot->getLevel()->getChunk($bot->asPosition()->getFloorX() >> 4, $bot->asPosition()->getFloorZ() >> 4, true);
+                        $bot->getLevel()->loadChunk($chunk->getX(), $chunk->getZ());
                         $bot->teleport($bot->getDefaultPosition());
                         $command = $template->getCommand();
                         $bot->setName($template->getName());
@@ -194,7 +213,7 @@ class FormManager
                 ],
                 function (Player $player, CustomFormResponse $response) use ($templateName): void {
                     [$name, $health, $damage, $skin, $command, $respawnTime] = $response->getValues();
-                    $skin = $this->plugin->getSkinStorage()->getSkin($skin);
+                    $skin = $this->plugin->getSkinStorage()->getSkin($skin) ?? $player->getSkin();
                     if ($skin !== null) {
                         $this->plugin->getTemplateManager()->editTemplate($templateName, $name, $health, $damage, $skin, $command, $respawnTime);
                     }

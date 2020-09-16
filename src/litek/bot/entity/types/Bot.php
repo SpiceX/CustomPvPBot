@@ -18,8 +18,8 @@ declare(strict_types=1);
 
 namespace litek\bot\entity\types;
 
-use DivisionByZeroError;
 use Exception;
+use InvalidStateException;
 use litek\bot\CustomPvPBot;
 use litek\bot\math\Vector3X;
 use pocketmine\block\Block;
@@ -78,7 +78,7 @@ class Bot extends Human
         parent::__construct($level, $nbt);
         $this->target = $target;
         $this->setNameTag($this->getNameTag());
-        $this->setCanSaveWithChunk(true);
+        $this->setCanSaveWithChunk(false);
     }
 
     /**
@@ -337,8 +337,15 @@ class Bot extends Human
 
     public function attack(EntityDamageEvent $source): void
     {
-        parent::attack($source);
-        $this->hitTick = Server::getInstance()->getTick();
+        try {
+            if ($this->isFlaggedForDespawn()) {
+                return;
+            }
+            parent::attack($source);
+            $this->hitTick = Server::getInstance()->getTick();
+        } catch (InvalidStateException $exception) {
+            return;
+        }
     }
 
     /**
@@ -405,6 +412,12 @@ class Bot extends Human
     public function setRespawnTime(int $respawnTime): void
     {
         $this->respawnTime = $respawnTime;
+    }
+
+    public function __destruct()
+    {
+        parent::__destruct();
+        unset($this->target);
     }
 
 }
